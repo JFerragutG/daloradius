@@ -56,7 +56,7 @@ $sql = sprintf($sqlFormat, $configValues['CONFIG_DB_TBL_DALOOPERATORS'],
     $operator_user, $operator_pass);
 $res = $dbSocket->query($sql);
 $numRows = $res->numRows();
-
+//Guardes pass base de dades
 
 
 
@@ -70,16 +70,13 @@ if ($numRows != 1) {
     header('Location: login.php');
     exit;
 }
-
-
-
+//$pass_encriptada = MD5($operator_pass)
 
 $row = $res->fetchRow(DB_FETCHMODE_ASSOC);
-//if (md5($_POST['operator_pass']) == $row[2]) {
-    
-$operator_id = $row['id'];
+//if ($pass_encriptada === variable) { <--- passes camp base de dades
+    $operator_id = $row['id'];
 //}
-
+//if (password_verify(parametre1, parametre2)){}
 if (array_key_exists('operator_login_error', $_SESSION)) {
     
     unset($_SESSION['operator_login_error']);
