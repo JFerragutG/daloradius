@@ -61,13 +61,29 @@
 				$currDate = date('Y-m-d H:i:s');
 				$currBy = $_SESSION['operator_user'];
 
+				$operator_password = $dbSocket->escapeSimple($operator_password);
+
+				switch($configValues['CONFIG_DB_PASSWORD_ENCRYPTION']) {
+					case "cleartext":
+						$dbPassword = "'$operator_password'";
+						break;
+					case "crypt":
+						$dbPassword = "ENCRYPT('$operator_password', 'SALT_DALORADIUS')";
+						break;
+					case "md5":
+						$dbPassword = MD5($operator_password);
+						break;
+					default:
+						$dbPassword = "'$operator_password'";
+				}
+
 				// insert username and password of operator into the database
 				$sql = "INSERT INTO ".$configValues['CONFIG_DB_TBL_DALOOPERATORS'].
 					" (id, username, password, firstname, lastname, title, department, company, ".
 					" phone1, phone2, email1, email2, messenger1, messenger2, notes, ".
 					" creationdate, creationby, updatedate, updateby) VALUES (0, ".
 					"'".$dbSocket->escapeSimple($operator_username)."', ".
-					"'".$dbSocket->escapeSimple($operator_password)."', ".
+					"'".$dbSocket->escapeSimple($dbPassword)."', ".
 					"'".$dbSocket->escapeSimple($firstname)."', ".
 					"'".$dbSocket->escapeSimple($lastname)."', ".
 					"'".$dbSocket->escapeSimple($title)."', ".
