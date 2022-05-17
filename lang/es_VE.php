@@ -294,7 +294,7 @@ $l['all']['BusinessWebsite'] = "Sitio web de la empresa";
 $l['all']['BusinessEmail'] = "Email de la empresa";
 $l['all']['BusinessContactPerson'] = "Persona contacto en la empresa";
 $l['all']['DBPasswordEncryption'] = "Tipo de cifrado de las contrase&ntilde;as en la base de datos";
-
+$l['all']['OperatorPasswordEncryption'] = "Tipo de cifrado de las contrase&ntilde;as en los operadores";
 
 /* **********************************************************************************
  * Tooltips

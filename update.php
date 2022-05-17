@@ -1744,6 +1744,7 @@ if (isset($_POST['submit'])) {
 		$configValues['CONFIG_PATH_RADIUS_DICT'] = '';
 		$configValues['CONFIG_PATH_DALO_VARIABLE_DATA'] = '/var/www/daloradius/var';
 		$configValues['CONFIG_DB_PASSWORD_ENCRYPTION'] = 'cleartext';
+		$configValues['CONFIG_OPERATOR_PASSWORD_ENCRYPTION'] = 'cleartext';
 		$configValues['CONFIG_LANG'] = 'en';
 		$configValues['CONFIG_LOG_PAGES'] = 'no';
 		$configValues['CONFIG_LOG_ACTIONS'] = 'no';

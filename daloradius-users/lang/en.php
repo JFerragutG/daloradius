@@ -190,7 +190,7 @@ $l['all']['rates'] = "rates";
 $l['all']['hotspots'] = "hotspots";
 
 $l['all']['DBPasswordEncryption'] = "DB Password Encryption Type";
-
+$l['all']['OperatorPasswordEncryption'] = "Operator Password Encryption Type";
 
 $l['all']['CurrentPassword'] = "Current Password";
 $l['all']['NewPassword'] = "New Password";

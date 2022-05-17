@@ -43,6 +43,9 @@
 		// this should probably move to some other page at some point
 		if (isset($_REQUEST['config_db_pass_encrypt']))
 			$configValues['CONFIG_DB_PASSWORD_ENCRYPTION'] = $_REQUEST['config_db_pass_encrypt'];
+
+		if (isset($_REQUEST['config_operator_pass_encrypt']))
+			$configValues['CONFIG_OPERATOR_PASSWORD_ENCRYPTION'] = $_REQUEST['config_operator_pass_encrypt'];
 		
         include ("library/config_write.php");
     }	
@@ -89,6 +92,17 @@
 		<label for='' class='form'><?php echo t('all','DBPasswordEncryption')?></label>
 		<select class='form' name="config_db_pass_encrypt">
 			<option value="<?php echo $configValues['CONFIG_DB_PASSWORD_ENCRYPTION'] ?>"> <?php echo $configValues['CONFIG_DB_PASSWORD_ENCRYPTION'] ?> </option>
+			<option value=""></option>
+			<option value="cleartext">cleartext</option>
+			<option value="crypt">unix crypt</option>
+			<option value="md5">md5</option>
+		</select>
+		</li>
+
+		<li class='fieldset'>
+		<label for='' class='form'><?php echo t('all','OperatorPasswordEncryption')?></label>
+		<select class='form' name="config_operator_pass_encrypt">
+			<option value="<?php echo $configValues['CONFIG_OPERATOR_PASSWORD_ENCRYPTION'] ?>"> <?php echo $configValues['CONFIG_OPERATOR_PASSWORD_ENCRYPTION'] ?> </option>
 			<option value=""></option>
 			<option value="cleartext">cleartext</option>
 			<option value="crypt">unix crypt</option>

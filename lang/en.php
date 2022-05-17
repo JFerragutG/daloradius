@@ -421,7 +421,7 @@ $l['all']['BusinessWebsite'] = "Business Website";
 $l['all']['BusinessEmail'] = "Business Email";
 $l['all']['BusinessContactPerson'] = "Business Contact Person";
 $l['all']['DBPasswordEncryption'] = "DB Password Encryption Type";
-
+$l['all']['OperatorPasswordEncryption'] = "Operator Password Encryption Type";
 
 /* **********************************************************************************
  * Tooltips
