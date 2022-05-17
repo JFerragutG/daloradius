@@ -57,6 +57,9 @@ $sql = sprintf($sqlFormat, $configValues['CONFIG_DB_TBL_DALOOPERATORS'],
 $res = $dbSocket->query($sql);
 $numRows = $res->numRows();
 
+
+
+
 if ($numRows != 1) {
     $_SESSION['daloradius_logged_in'] = false;
     $_SESSION['operator_login_error'] = true;
@@ -68,12 +71,21 @@ if ($numRows != 1) {
     exit;
 }
 
+
+
+
 $row = $res->fetchRow(DB_FETCHMODE_ASSOC);
+//if (md5($_POST['operator_pass']) == $row[2]) {
+    
 $operator_id = $row['id'];
+//}
 
 if (array_key_exists('operator_login_error', $_SESSION)) {
+    
     unset($_SESSION['operator_login_error']);
 }
+
+
 $_SESSION['daloradius_logged_in'] = true;
 $_SESSION['operator_user'] = $operator_user;
 $_SESSION['operator_id'] = $operator_id;
