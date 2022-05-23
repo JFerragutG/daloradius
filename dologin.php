@@ -49,16 +49,22 @@ $_SESSION['location_name'] = (array_key_exists('CONFIG_LOCATIONS', $configValues
         $location_name : "default";
         
 $operator_user = $dbSocket->escapeSimple($_POST['operator_user']);
-$operator_pass = $dbSocket->escapeSimple($_POST['operator_pass']);
+$operator_pass = $dbSocket->escapeSimple(MD5($_POST['operator_pass']));
 
 $sqlFormat = "select * from %s where username='%s' and password='%s'";
 $sql = sprintf($sqlFormat, $configValues['CONFIG_DB_TBL_DALOOPERATORS'],
     $operator_user, $operator_pass);
 $res = $dbSocket->query($sql);
 $numRows = $res->numRows();
-//Guardes pass base de dades
 
+$row = $res->fetchRow(DB_FETCHMODE_ASSOC);
 
+// take dbPassword
+$databasePassword = $row['password'];
+
+// check MD5 hashes
+if ($databasePassword == md5($operator_pass)) {
+}
 
 if ($numRows != 1) {
     $_SESSION['daloradius_logged_in'] = false;
@@ -70,18 +76,15 @@ if ($numRows != 1) {
     header('Location: login.php');
     exit;
 }
-//$pass_encriptada = MD5($operator_pass)
 
-$row = $res->fetchRow(DB_FETCHMODE_ASSOC);
-//if ($pass_encriptada === variable) { <--- passes camp base de dades
-    $operator_id = $row['id'];
-//}
-//if (password_verify(parametre1, parametre2)){}
+$operator_id = $row['id'];
+
+
 if (array_key_exists('operator_login_error', $_SESSION)) {
     
     unset($_SESSION['operator_login_error']);
+    
 }
-
 
 $_SESSION['daloradius_logged_in'] = true;
 $_SESSION['operator_user'] = $operator_user;
